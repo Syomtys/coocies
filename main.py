@@ -1,6 +1,8 @@
 import re
 import os
 
+final_str = ''
+
 filename = input()
 
 def cleaning(string):
@@ -13,9 +15,14 @@ def cleaning(string):
     string = re.sub(r"(,([\{])[^\{}]+(gmail)[^\{}]+[\}])", '', string, flags=re.M)
     string = re.sub(r"(,([\{])[^\{}]+(instagram)[^\{}]+[\}])", '', string, flags=re.M)
     string = re.sub(r"(,([\{])[^\{}]+(meta)[^\{}]+[\}])", '', string, flags=re.M)
+    final_str = string
+    return (final_str)
 
 
-with open(filename, "r", encoding='utf-8') as file:
+with open(filename, "r+", encoding='utf-8') as file:
     file_str = file.read()
-    final_str = cleaning(file_str)
-    file.write(final_str)
+    print(file_str)
+    final_string = cleaning(file_str)
+    file.seek(0)
+    file.write(final_string)
+    file.truncate()
