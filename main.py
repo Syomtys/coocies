@@ -21,7 +21,6 @@ def cleaning(string):
 
 with open(filename, "r+", encoding='utf-8') as file:
     file_str = file.read()
-    print(file_str)
     final_string = cleaning(file_str)
     file.seek(0)
     file.write(final_string)
