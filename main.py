@@ -1,16 +1,21 @@
-# This is a sample Python script.
+import re
+import os
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+filename = input()
+
+def cleaning(string):
+    string = re.sub(r"(,([\{])[^\{}]+(microsoft)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(google)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(outlook)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(live)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(facebook)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(youtube)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(gmail)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(instagram)[^\{}]+[\}])", '', string, flags=re.M)
+    string = re.sub(r"(,([\{])[^\{}]+(meta)[^\{}]+[\}])", '', string, flags=re.M)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+with open(filename, "r", encoding='utf-8') as file:
+    file_str = file.read()
+    final_str = cleaning(file_str)
+    file.write(final_str)
